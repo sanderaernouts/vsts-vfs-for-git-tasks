@@ -8,28 +8,45 @@
    "visibility": ["Build","Release"],
    "author": "",
    "version": {
-      "Major": 1,
+      "Major": 0,
       "Minor": 0,
-      "Patch": 0
+      "Patch": 6
    },
    "demands": [],
    "inputs": [
-      {
-         "name": "variable1",
-         "type": "filePath",
-         "label": "Path to Solution File",
-         "defaultValue": "",
-         "required": true
-      },
-      {
-         "name": "variable2",
-         "type": "string",
-         "label": "Sample text variable",
-         "defaultValue": "",
-         "required": false,
-         "helpMarkDown": "This will give you a hover-over tooltip"
-      }
+        {
+            "name": "project",
+            "type": "picklist",
+            "label": "Project",
+            "defaultValue": "",
+            "required": true
+        },
+        {
+            "name": "gitRepositoryId",
+            "type": "picklist",
+            "label": "Repository",
+            "defaultValue": "",
+            "required": true
+        }
+        
    ],
+   "dataSourceBindings": [
+        {
+            "target": "project",
+            "endpointId": "tfs:teamfoundation",
+            "endpointUrl": "{{endpoint.url}}/_apis/projects",
+            "resultSelector": "jsonpath:$.value[*]",
+            "resultTemplate": "{ \"Value\" : \"{{{name}}}\", \"DisplayValue\" : \"{{{name}}}\" }"
+        },
+       {
+            "target": "gitRepositoryId",
+            "endpointId": "tfs:teamfoundation",
+            "endpointUrl": "{{endpoint.url}}/{project}/_apis/git/repositories",
+            "resultSelector": "jsonpath:$.value[*]",
+            "resultTemplate": "{ \"Value\" : \"{{{id}}}\", \"DisplayValue\" : \"{{{name}}}\" }"
+        }
+
+    ],
    "instanceNameFormat": "vfs-for-git",
    "execution":
     {"Node":{"target":"vfs-for-git.js"}}

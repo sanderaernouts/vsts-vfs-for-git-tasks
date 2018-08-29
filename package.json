@@ -7,9 +7,11 @@
     "install-task-lib": "cd vfs-for-git && npm install --save-dev"
   },
   "devDependencies": {
-    "@types/node": "^8.0.7",
+    "@types/node": "^10.5.2",
+    "tsc": "^1.20150623.0",
+    "tslint": "^5.11.0",
     "tfx-cli": "^0.4.5",
-    "typescript": "2.3.4"
+    "typescript": "^2.9.2"
   },
   "name": "vstsexttask",
   "private": true,
