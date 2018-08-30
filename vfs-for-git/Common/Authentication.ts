@@ -10,7 +10,7 @@ export function getSystemAccessToken(): string {
 
         return auth.parameters.AccessToken;
     } else {
-        tl.warning(tl.loc("Warn_CredentialsNotFound"));
+        tl.warning("Credentials not found.");
     }
 }
 
@@ -26,14 +26,7 @@ export function storeGitCredentials(accountUrl:string, accessToken: string): voi
     options.outStream = process.stdout as stream.Writable;
     options.errStream = process.stderr as stream.Writable;
 
-    let command: Array<string> = new Array<string>();
-
-    command.push(
-        "/generic:LegacyGeneric:target=git:", accountUrl,
-        "/user:\"VSTS agent\"",
-        "/password:", accessToken
-    );
-
+    let command: string = `/generic:LegacyGeneric:target=git:${accountUrl} /user:VSTS agent /password:${accessToken}`;
     let execResult: IExecSyncResult = tl.execSync("cmdkey", command, options);
 
     if (execResult.code === 0) {
@@ -41,5 +34,5 @@ export function storeGitCredentials(accountUrl:string, accessToken: string): voi
     }
 
     // tslint:disable-next-line:max-line-length
-    throw new Error(`An error occurd while trying to store git credentials in the Windows Credential Store. cmdkey exited with code ${execResult.code} and error ${execResult.stderr ? execResult.stderr.trim() : execResult.stderr}`);
+    throw new Error(`An error occurd while trying to store git credentials in the Windows Credential Store. Command cmdkey.exe exited with code ${execResult.code} and error ${execResult.stderr ? execResult.stderr.trim() : execResult.stderr}`);
 }
