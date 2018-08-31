@@ -26,7 +26,8 @@ export function storeGitCredentials(accountUrl:string, accessToken: string): voi
     options.outStream = process.stdout as stream.Writable;
     options.errStream = process.stderr as stream.Writable;
 
-    let command: string = `/generic:LegacyGeneric:target=git:${accountUrl} /user:VSTS agent /password:${accessToken}`;
+    let trimmedUrl: string = trimTrailingSlashFromUrl(accountUrl);
+    let command: string = `/generic:LegacyGeneric:target=git:${trimmedUrl} /user:Agent PAT /password:${accessToken}`;
     let execResult: IExecSyncResult = tl.execSync("cmdkey", command, options);
 
     if (execResult.code === 0) {
@@ -35,4 +36,10 @@ export function storeGitCredentials(accountUrl:string, accessToken: string): voi
 
     // tslint:disable-next-line:max-line-length
     throw new Error(`An error occurd while trying to store git credentials in the Windows Credential Store. Command cmdkey.exe exited with code ${execResult.code} and error ${execResult.stderr ? execResult.stderr.trim() : execResult.stderr}`);
+}
+
+function trimTrailingSlashFromUrl(url: string): string {
+    // if site has an end slash (like: www.example.com/),
+    // then remove it and return the site without the end slash
+    return url.replace(/\/$/, ""); // match a forward slash / at the end of the string ($)
 }

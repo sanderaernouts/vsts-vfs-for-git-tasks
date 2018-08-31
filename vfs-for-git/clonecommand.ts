@@ -29,7 +29,6 @@ export async function execute(): Promise<void> {
         console.log(`Storing agent credentials in Windows credential store so VFS for git can use this for authentication.`);
         auth.storeGitCredentials(endpointUrl, accessToken);
 
-        console.log(`Attempting to clone ${repository.name} from ${repository.remoteUrl} into ${enlistmentRootPath}`);
         let repositoryPath: string = gvfs.clone(repository.remoteUrl, enlistmentRootPath);
 
         console.log(`Successfully cloned repository using VFS for git`);
