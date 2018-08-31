@@ -2,7 +2,7 @@
     "id": "08303e1c-e498-484c-a908-708604ddaefa",
     "name": "vfs-for-git",
     "friendlyName": "VFS for git",
-    "description": "Use VFS for git to clone a repostiroy",
+    "description": "Run a VFS for git command",
     "helpMarkDown": "[More Information](https://url.to/yourmarkdown)",
     "category": "Utility",
     "visibility": ["Build","Release"],
@@ -10,7 +10,7 @@
     "version": {
         "Major": 0,
         "Minor": 0,
-        "Patch": 32
+        "Patch": 33
     },
     "minimumAgentVersion": "2.115.0",
     "demands": [],
