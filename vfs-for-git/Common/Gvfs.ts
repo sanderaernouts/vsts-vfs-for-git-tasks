@@ -82,9 +82,6 @@ function StoreMountedEnlistmentRootDirectory(enlistmentRoot: string): void {
     console.log("Use the VFS for git unmount command to unmount all these enlistments at the end of your build.");
 
     tl.setVariable(MountedEnlistmentsVariable, mountedEnlistmentRootDirectories.join(MountedEnlistmentsSeperator));
-
-    let v: string = GetMountedEnlistmentRootDirectories().join(",");
-    console.log(v);
 }
 
 function GetMountedEnlistmentRootDirectories(): Array<string> {
