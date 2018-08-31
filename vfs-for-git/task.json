@@ -13,7 +13,6 @@
         "Patch": 30
     },
     "demands": [],
-    "instanceNameFormat": "Universal $(command)",
     "inputs": [
         {
             "name": "command",
@@ -27,7 +26,7 @@
             },
             "options": {
                 "clone": "Clone",
-                "unmount": "unmount"
+                "unmount": "Unmount"
             }
         },
         {
@@ -101,8 +100,7 @@
         }
 
     ],
-    "instanceNameFormat": "vfs-for-git",
+    "instanceNameFormat": "VFS for git: $(command)",
     "execution":
     {"Node":{"target":"vfs-for-git.js"}}
-   
 }
