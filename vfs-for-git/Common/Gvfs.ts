@@ -18,13 +18,21 @@ export function clone(remoteUrl:string, enlistmentRootDirectory:string): string 
 }
 
 export function unmountAll(): void {
+    let mountedEnlistments: Array<string> = GetMountedEnlistmentRootDirectories();
+
+    if(mountedEnlistments.length === 0) {
+        console.log("No enlistments were previously mounted");
+        return;
+    }
+
+    console.log("Attempting to unmount previously mounted enlistments.");
     GetMountedEnlistmentRootDirectories().forEach(enlistmentRootDirectory => {
         unmount(enlistmentRootDirectory);
     });
 }
 
 export function unmount(enlistmentRootDirectory: string): void {
-    console.log(`Attempting to unmount VFS for git enlistmnet at ${enlistmentRootDirectory}`);
+    console.log(`Attempting to unmount VFS for git enlistment at ${enlistmentRootDirectory}`);
     ExecuteGvfsCommand(`unmount ${enlistmentRootDirectory}`);
 }
 
@@ -64,14 +72,6 @@ function CreateDefaultExecutionOptions(): IExecOptions {
 
 function StoreMountedEnlistmentRootDirectory(enlistmentRoot: string): void {
     let mountedEnlistmentRootDirectories: Array<string> = GetMountedEnlistmentRootDirectories();
-
-    if(mountedEnlistmentRootDirectories.length > 0) {
-        console.log("The following VFS for git enlistments were previously mounted:");
-        mountedEnlistmentRootDirectories.forEach(enlistment => {
-            console.log(`  - ${enlistment}`);
-        });
-    }
-
     mountedEnlistmentRootDirectories.push(enlistmentRoot);
 
     console.log("The following VFS for git enlistments are currently mounted:");
@@ -86,6 +86,7 @@ function StoreMountedEnlistmentRootDirectory(enlistmentRoot: string): void {
 
 function GetMountedEnlistmentRootDirectories(): Array<string> {
     let mountedEnlistmentRootDirectories: string = tl.getInput(MountedEnlistmentsVariable, false);
+    tl.debug(`${MountedEnlistmentsVariable}=${mountedEnlistmentRootDirectories}`);
 
     if(mountedEnlistmentRootDirectories == null || mountedEnlistmentRootDirectories === "") {
         return Array<string>();
