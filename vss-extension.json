@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "vsts-vfs-for-git-tasks",
-  "version": "0.0.38",
+  "version": "0.0.41",
   "name": "VFS for git tasks",
   "scopes": [],
   "description": "Build/release tasks for using Virtual File System for git.",

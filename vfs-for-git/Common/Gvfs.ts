@@ -3,7 +3,7 @@ import stream = require("stream");
 import path = require("path");
 import {IExecOptions, IExecSyncResult} from "vsts-task-lib/toolrunner";
 
-const MountedEnlistmentsVariable: string = "VfsForGit.Enlistments.Mounted";
+const MountedEnlistmentsVariable: string = "VFS_FOR_GIT_ENLISTMENTS_MOUNTED";
 const MountedEnlistmentsSeperator: string = ",";
 
 export function clone(remoteUrl:string, enlistmentRootDirectory:string): string {
@@ -81,12 +81,11 @@ function StoreMountedEnlistmentRootDirectory(enlistmentRoot: string): void {
 
     console.log("Use the VFS for git unmount command to unmount all these enlistments at the end of your build.");
 
-    tl.setVariable(MountedEnlistmentsVariable, mountedEnlistmentRootDirectories.join(MountedEnlistmentsSeperator), false);
+    tl.setTaskVariable(MountedEnlistmentsVariable, mountedEnlistmentRootDirectories.join(MountedEnlistmentsSeperator));
 }
 
 function GetMountedEnlistmentRootDirectories(): Array<string> {
-    let mountedEnlistmentRootDirectories: string = tl.getInput(MountedEnlistmentsVariable, false);
-    tl.debug(`${MountedEnlistmentsVariable}=${mountedEnlistmentRootDirectories}`);
+    let mountedEnlistmentRootDirectories: string = tl.getTaskVariable(MountedEnlistmentsVariable);
 
     if(mountedEnlistmentRootDirectories == null || mountedEnlistmentRootDirectories === "") {
         return Array<string>();
