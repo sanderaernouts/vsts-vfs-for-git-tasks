@@ -1,5 +1,3 @@
-#
-
 ## VFS for git tasks
 
 VFS for git is an open source system that allow you to work with huge git repositories. It was created by Microsoft to support the code base for Windows which is roughly 300 GB big and contains about 3.5 million files. See [Git at scale](https://docs.microsoft.com/en-us/azure/devops/learn/git/git-at-scale) and [gvfs.io](https://gvfs.io) for more information. The sources for VFS for git can be found on [github](https://github.com/Microsoft/VFSForGit).
