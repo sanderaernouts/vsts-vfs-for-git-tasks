@@ -12,7 +12,6 @@
         "Minor": 0,
         "Patch": 36
     },
-    "minimumAgentVersion": "2.117.0",
     "demands": [],
     "inputs": [
         {
