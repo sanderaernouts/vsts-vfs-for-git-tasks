@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "vsts-vfs-for-git-tasks",
-  "version": "0.0.44",
+  "version": "0.0.46",
   "name": "VFS for git tasks",
   "scopes": [],
   "description": "Build/release tasks for using Virtual File System for git.",
@@ -21,9 +21,6 @@
   "demands": [
     "api-version/3.0"
   ],
-  "tags": [
-    "Sample"
-  ],
   "categories": [
     "Build and release"
   ],
@@ -42,18 +39,18 @@
   },
   "links": {
     "getstarted": {
-      "uri": "https://bit.ly"
+      "uri": "https://github.com/sanderaernouts/vsts-vfs-for-git-tasks/"
     },
     "support": {
-      "uri": "https://bit.ly"
+      "uri": "https://github.com/sanderaernouts/vsts-vfs-for-git-tasks/issues"
     },
     "issues": {
-      "uri": "https://bit.ly"
+      "uri": "https://github.com/sanderaernouts/vsts-vfs-for-git-tasks/issues"
     }
   },
   "repository": {
     "type": "git",
-    "uri": "https://bit.ly"
+    "uri": "https://github.com/sanderaernouts/vsts-vfs-for-git-tasks"
   },
   "branding": {
     "color": "rgb(220, 235, 252)",
@@ -62,6 +59,24 @@
   "files": [
     {
       "path": "vfs-for-git"
+    },
+    {
+      "path": "static/images/step3.png"
+    },
+    {
+      "path": "static/images/step4.png"
+    },
+    {
+      "path": "static/images/step5.png"
+    },
+    {
+      "path": "static/images/step6.png"
+    },
+    {
+      "path": "static/images/step7.png"
+    },
+    {
+      "path": "static/images/step8.png"
     }
   ],
   "contributions": [
