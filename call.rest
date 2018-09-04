@@ -1,3 +1,0 @@
-GET  https://maritimesim.visualstudio.com/Nemo/_apis/git/repositories HTTP/1.1
-content-type: application/json
-authorization: Basic dXNlcjpwYWxqYmFsc2pvNGRzcHpndXNmbHhzcmEydmFzamVrNzR5c3NjanhtYXRqaG93Ym95NGNh
