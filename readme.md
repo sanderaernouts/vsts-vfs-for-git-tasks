@@ -1,6 +1,6 @@
 # VFS for git
 
-For details on how to use this extension in VSTS, see the [extension page](https://marketplace.visualstudio.com/items?itemName=sander-aernouts.vsts-vfs-for-git-tasks) in the marketplace.
+For details on how to use this extension in VSTS, see the [overview](overview.md) in the marketplace.
 
 ## Build
 
