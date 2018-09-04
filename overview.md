@@ -24,18 +24,18 @@ When using VFS for git on an agent there are basically 3 steps you need to take:
 2. Clone using `gvfs.exe`. This will automatically mount VFS for git enlistment.
 3. As the last step unmount the VFS for git enlistment using `gvfs.exe` (release the files).
 
-![Example build](/static/images/Screen1.png)
+![Example build](static/images/Screen1.png)
 
 #### Setup your build
 
 1. Make sure VFS for git is installed on your agent ([download](https://github.com/Microsoft/VFSForGit/releases/latest))
 2. Create a new build
 3. Disable build directory cleaning
-![Disable build directory cleaning](/static/images/Step3.png)
+![Disable build directory cleaning](static/images/Step3.png)
 4. Disable source syncing in the `Get Sources` task
-![Disable source syncing](/static/images/Step4.png)
+![Disable source syncing](static/images/Step4.png)
 5. Add the `Delete Files` task and configure it to clean the `$(Build.SourcesDirectory)` (assuming you will clone your VFS for git repository into this directory).
-![Add the Delete Files task](/static/images/Step5.png)
+![Add the Delete Files task](static/images/Step5.png)
 6. Add the `VFS for git` task to your build and configure it to use the `Clone` command.
 
     1. Select the `Clone` command
@@ -44,11 +44,11 @@ When using VFS for git on an agent there are basically 3 steps you need to take:
     4. Select the directory where the repository must be cloned to. (default: `$(Build.SourcesDirectory)`)
     5. Provide a VSTS variable name where the path to the repository will be stored (default: `Vfs.Git.RepositoryPath`).
 
-![Add the VFS for git clone task](/static/images/Step6.png)
+![Add the VFS for git clone task](static/images/Step6.png)
 7. Add any other build steps you need. Note that the root of your repository is in a special `src` subfolder. So use the output variable set in the previous step to access your sources.
-![VFS for git src directory](/static/images/Step7.png)
+![VFS for git src directory](static/images/Step7.png)
 8. Add the `VFS for git` as on of the lasts tasks to your build and configure it to use the `Unmount` command. Make sure you do not need the contents of the repository after this step. Make sure you configure this taks to run always even if the build was canceled to unsure the VFS for git enlistments are properly unmounted.
-![Add the VFS for git unmount task](/static/images/Step8.png)
+![Add the VFS for git unmount task](static/images/Step8.png)
 
 ### Known issue(s)
 
