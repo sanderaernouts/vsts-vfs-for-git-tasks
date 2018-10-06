@@ -7,6 +7,12 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 steps:
+- powershell: |
+    $v = Get-Content .\version.json | ConvertFrom-Json | select -first 1
+    Write-Output ("##vso[build.updatebuildnumber]{0}.{1}.{2}" -f $v.major, $v.minor, $env:BUILD_BUILDID)
+  displayName: Update build number
+  errorActionPreference: stop
+
 - task: NodeTool@0
   inputs:
     version: '9.x'
