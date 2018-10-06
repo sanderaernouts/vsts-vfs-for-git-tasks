@@ -7,10 +7,54 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+- task: NodeTool@0
+  inputs:
+    version: '9.x'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+- task: Npm@1
+  displayName: 'npm install: root'
+  inputs:
+    command: install
+
+- task: Npm@1
+  displayName: 'npm install: vfs-for-git'
+  inputs:
+    command: install
+    workingDir: vfs-for-git
+
+- task: Npm@1
+  displayName: 'npm run compile'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'run compile'
+
+- task: Npm@1
+  displayName: 'npm prune: root'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'prune --production'
+
+- task: Npm@1
+  displayName: 'npm prune: vfs-for-git'
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'prune --production'
+    workingDir: vfs-for-git
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    Contents: |
+     **/*
+     !.git/**/*
+     !.git*
+     !azure-pipelines.yml
+     
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+
