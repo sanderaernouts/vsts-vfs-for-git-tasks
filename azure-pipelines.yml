@@ -6,6 +6,9 @@
 pool:
   vmImage: 'Ubuntu 16.04'
 
+trigger:
+  batch: true
+
 steps:
 - powershell: |
     $v = Get-Content .\version.json | ConvertFrom-Json | select -first 1
