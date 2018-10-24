@@ -45,9 +45,9 @@ When using VFS for git on an agent there are basically 3 steps you need to take:
     5. Provide a VSTS variable name where the path to the repository will be stored (default: `Vfs.Git.RepositoryPath`).
 
 ![Add the VFS for git clone task](static/images/step6.png)
-7. Add any other build steps you need. Note that the root of your repository is in a special `src` subfolder. So use the output variable set in the previous step to access your sources.
+7. Add any other build steps you need. Note that the root of your repository is in a special `src` subfolder. So use the output variable set in the previous step to access your sources. The output variable, `Vfs.Git.RepositoryPath` by default, will contain the path to this special `src` folder.
 ![VFS for git src directory](static/images/step7.png)
-8. Add the `VFS for git` as on of the lasts tasks to your build and configure it to use the `Unmount` command. Make sure you do not need the contents of the repository after this step. Make sure you configure this taks to run always even if the build was canceled to unsure the VFS for git enlistments are properly unmounted.
+8. Add the `VFS for git` as on of the lasts tasks to your build and configure it to use the `Unmount` command. Make sure you do not need the contents of the repository after this step. Make sure you configure this taks to run always even if the build was canceled to ensure the VFS for git enlistments are properly unmounted.
 ![Add the VFS for git unmount task](static/images/step8.png)
 
 ### Known issue(s)
