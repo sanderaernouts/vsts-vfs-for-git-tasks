@@ -26,8 +26,8 @@ export async function execute(): Promise<void> {
         let gitApi: IGitApi = await webApi.getGitApi();
         let repository: GitRepository = await gitApi.getRepository(repositoryId, projectId);
 
-        console.log(`Storing agent credentials in Windows credential store so VFS for git can use this for authentication.`);
-        auth.storeGitCredentials(endpointUrl, accessToken);
+        console.log(`Storing agent credentials for ` + repository.remoteUrl +` in Windows credential store so VFS for git can use this for authentication.`);
+        auth.storeGitCredentials(repository.remoteUrl, accessToken);
 
         let repositoryPath: string = gvfs.clone(repository.remoteUrl, enlistmentRootPath);
 
