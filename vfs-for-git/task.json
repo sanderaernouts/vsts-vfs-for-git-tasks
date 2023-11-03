@@ -2,6 +2,7 @@
     "id": "08303e1c-e498-484c-a908-708604ddaefa",
     "name": "vfs-for-git",
     "friendlyName": "VFS for git",
+    "deprecated": "true",
     "description": "Run a VFS for git command",
     "helpMarkDown": "[More Information](https://url.to/yourmarkdown)",
     "category": "Utility",
