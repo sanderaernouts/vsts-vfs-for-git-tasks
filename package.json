@@ -8,10 +8,9 @@
   },
   "devDependencies": {
     "@types/node": "^10.5.2",
-    "tsc": "^1.20150623.0",
-    "tslint": "^5.11.0",
     "tfx-cli": "^0.4.5",
-    "typescript": "^2.9.2"
+    "tslint": "^5.11.0",
+    "typescript": "^5.2.2"
   },
   "name": "vstsexttask",
   "private": true,
