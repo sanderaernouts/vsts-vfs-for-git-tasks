@@ -17,8 +17,10 @@ steps:
   errorActionPreference: stop
 
 - task: NodeTool@0
+  displayName: 'install nodeJS'
   inputs:
-    version: '9.x'
+    versionSource: 'fromFile'
+    versionFilePath: '.nvmrc'
 
 - task: Npm@1
   displayName: 'npm install: root'
